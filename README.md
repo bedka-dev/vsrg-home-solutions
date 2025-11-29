@@ -36,6 +36,30 @@ npm i
 npm run dev
 ```
 
+**Use Docker**
+
+If you prefer using Docker:
+
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
+
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
+
+# Step 3: Run with Docker Compose (development mode)
+docker-compose up dev
+
+# Or run in production mode
+docker-compose up prod
+
+# Run in detached mode (background)
+docker-compose up -d dev
+```
+
+The development server will be available at `http://localhost:8080`
+The production server will be available at `http://localhost:80`
+
 **Edit a file directly in GitHub**
 
 - Navigate to the desired file(s).
