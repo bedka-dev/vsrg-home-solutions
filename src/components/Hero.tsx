@@ -4,68 +4,66 @@ import heroImage from "@/assets/hero-home.jpg";
 
 const Hero = () => {
   return (
-    <>
-      {/* Hero Section with Split Layout */}
-      <section id="home" className="relative bg-hero-gradient text-primary-foreground overflow-hidden">
-        <div className="container mx-auto px-4 py-16 md:py-24">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* Left Content */}
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                The <span className="italic font-light">Trusted Partner</span> in<br />
-                Selling Your Home Fast<br />
-                and Moving Forward.
-              </h1>
-              <p className="text-lg md:text-xl text-primary-foreground/90 leading-relaxed max-w-xl">
-                We help homeowners facing challenging situations sell their properties quickly - as is, 
-                with no fees or complications. With 25+ years of real estate experience, we provide 
-                fair cash offers and close on your timeline.
-              </p>
-              <Button 
-                size="lg"
-                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold text-lg px-8 py-6"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+    <section id="home" className="relative bg-hero-gradient text-primary-foreground overflow-hidden">
+      {/* Background Image Overlay */}
+      <div 
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: `url(${heroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      
+      <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            Sell Your DFW Home Fast & Fair
+          </h1>
+          <p className="text-xl md:text-2xl mb-12 text-primary-foreground/90 max-w-3xl mx-auto">
+            We specialize in helping homeowners sell their properties - as is, quickly - no matter the situation. 
+            Get a cash offer today with no hidden fees or obligations.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <Button 
+              size="lg"
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold text-lg px-8 py-6"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Get My Cash Offer
+            </Button>
+            <Button 
+              size="lg"
+              variant="outline"
+              className="bg-background/10 text-primary-foreground border-primary-foreground/30 hover:bg-background/20 font-semibold text-lg px-8 py-6"
+              onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Learn More
+            </Button>
+          </div>
+
+          {/* Key Benefits Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {[
+              { title: "No Fees or Commissions", description: "Keep 100% of your sale" },
+              { title: "Houses in Any Condition", description: "We buy as-is" },
+              { title: "Close in as Few as 7 Days", description: "Fast and flexible" },
+              { title: "Family Owned & Operated", description: "Local DFW experts" },
+            ].map((benefit, index) => (
+              <div 
+                key={index}
+                className="bg-background/10 backdrop-blur rounded-lg p-6 border border-primary-foreground/20 hover:bg-background/20 transition-all"
               >
-                Get Your Cash Offer Today →
-              </Button>
-            </div>
-
-            {/* Right Image */}
-            <div className="relative">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/30 rounded-full -z-10 blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-40 h-40 bg-secondary/20 rounded-full -z-10 blur-3xl"></div>
-              <img 
-                src={heroImage} 
-                alt="Dallas-Fort Worth Home" 
-                className="rounded-2xl shadow-2xl w-full"
-              />
-            </div>
+                <CheckCircle2 className="h-10 w-10 mb-3 text-secondary mx-auto" />
+                <h3 className="font-semibold text-lg mb-2">{benefit.title}</h3>
+                <p className="text-sm text-primary-foreground/80">{benefit.description}</p>
+              </div>
+            ))}
           </div>
         </div>
-      </section>
-
-      {/* Stats Card Overlay */}
-      <section className="relative -mt-12 pb-20">
-        <div className="container mx-auto px-4">
-          <div className="bg-card rounded-2xl shadow-2xl p-8 md:p-12 border border-border">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { icon: CheckCircle2, title: "No Fees or Commissions", description: "Keep 100% of Your Sale" },
-                { icon: CheckCircle2, title: "Any Condition", description: "We Buy Houses As-Is" },
-                { icon: CheckCircle2, title: "7-Day Close", description: "Fast and Flexible Timeline" },
-                { icon: CheckCircle2, title: "Family Owned", description: "Local DFW Experts" },
-              ].map((stat, index) => (
-                <div key={index} className="text-center space-y-3">
-                  <stat.icon className="h-12 w-12 text-secondary mx-auto" />
-                  <h3 className="font-bold text-lg text-card-foreground">{stat.title}</h3>
-                  <p className="text-sm text-muted-foreground">{stat.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
