@@ -20,6 +20,8 @@ If you want to work locally using your own IDE, you can clone this repo and push
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
+**Note:** If you're using Docker (see below), you don't need to install Node.js & npm locally as they're included in the Docker containers.
+
 Follow these steps:
 
 ```sh
