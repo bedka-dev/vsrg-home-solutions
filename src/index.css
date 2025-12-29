@@ -8,10 +8,10 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 40 45% 97%;
     --foreground: 215 25% 15%;
 
-    --card: 0 0% 100%;
+    --card: 180 20% 90%;
     --card-foreground: 215 25% 15%;
 
     --popover: 0 0% 100%;
@@ -25,18 +25,19 @@ All colors MUST be HSL.
     --secondary: 45 95% 50%;
     --secondary-foreground: 215 45% 20%;
 
-    --muted: 210 20% 96%;
+    /* Subtle warm beige for muted sections */
+    --muted: 38 30% 95%;
     --muted-foreground: 215 15% 50%;
 
-    /* Light blue for accents */
-    --accent: 200 85% 95%;
+    /* Light warm accent */
+    --accent: 40 60% 96%;
     --accent-foreground: 215 45% 20%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 20% 88%;
-    --input: 215 20% 92%;
+    --border: 40 25% 88%;
+    --input: 40 30% 92%; 
     --ring: 215 45% 20%;
 
     --radius: 0.75rem;
@@ -48,6 +49,10 @@ All colors MUST be HSL.
     --gold-light: 45 95% 95%;
     --trust-blue: 200 60% 45%;
     
+    /* Warm beige for section backgrounds */
+    --section-bg-light: 38 35% 96%;
+    --section-bg-medium: 38 30% 94%;
+    
     /* Shadows */
     --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.08);
     --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
@@ -55,7 +60,7 @@ All colors MUST be HSL.
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 40 45% 97%;
 
     --sidebar-foreground: 240 5.3% 26.1%;
 
@@ -63,11 +68,11 @@ All colors MUST be HSL.
 
     --sidebar-primary-foreground: 0 0% 98%;
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent: 40 35% 95%;
 
     --sidebar-accent-foreground: 240 5.9% 10%;
 
-    --sidebar-border: 220 13% 91%;
+    --sidebar-border: 40 25% 88%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
@@ -88,27 +93,21 @@ All colors MUST be HSL.
     --secondary: 215 40% 25%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 215 30% 20%;
+    --muted: 38 20% 25%;
     --muted-foreground: 215 15% 65%;
 
-    --accent: 200 60% 25%;
+    --accent: 40 40% 30%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 40%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 215 30% 25%;
-    --input: 215 30% 20%;
+    --border: 38 20% 30%;
+    --input: 38 20% 25%;
     --ring: 45 95% 50%;
     
     --hero-gradient-start: 215 45% 15%;
     --hero-gradient-end: 215 35% 20%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
   }
 
   body {
