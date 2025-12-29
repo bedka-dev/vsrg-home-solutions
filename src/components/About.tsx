@@ -1,9 +1,9 @@
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-muted">
+    <section id="about" className="py-10 bg-muted">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary">
+          <h2 className="text-4xl md:text-4.5xl font-semibold mb-4 text-primary">
             About Us
           </h2>
           <p className="text-xl mb-8 text-foreground leading-relaxed">
