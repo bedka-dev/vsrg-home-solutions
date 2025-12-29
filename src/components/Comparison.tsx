@@ -46,10 +46,10 @@ const Comparison = () => {
   ];
 
   return (
-    <section className="py-20 bg-muted">
+    <section className="py-10 bg-muted">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
+          <h2 className="text-4xl md:text-4.5xl font-semibold mb-4 text-primary">
             Why Choose Us?
           </h2>
           <p className="text-xl text-muted-foreground">
@@ -91,7 +91,7 @@ const Comparison = () => {
                 </div>
                 <div className="p-6 border-b md:border-b-0 border-border">
                   <div className="flex items-center gap-2">
-                    <X className="h-5 w-5 text-red-500 flex-shrink-0" />
+                    <X className="h-5 w-5 text-destructive flex-shrink-0" />
                     <span className="text-muted-foreground">{item.agent.value}</span>
                   </div>
                 </div>
