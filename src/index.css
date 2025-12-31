@@ -113,4 +113,23 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+
+  h1 {
+    @apply text-4xl font-bold text-primary;
+  }
+
+  h2 {
+    @apply text-4xl font-semibold text-primary;
+  }
+
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 3rem; /* 5xl */
+      line-height: 1;
+    }
+
+    h2 {
+      font-size: 2.75rem; /* 4.5xl */
+    }
+  }
 }
