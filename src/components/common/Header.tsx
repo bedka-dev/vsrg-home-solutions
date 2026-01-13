@@ -154,7 +154,7 @@ const Header = ({ transparent = false }: HeaderProps) => {
               )}
             </div>
             <a
-              href="#contact"
+              href="/contact"
               className={`transition-colors font-medium pb-1 ${
                 isScrolled
                   ? 'text-foreground hover:text-primary'
