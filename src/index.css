@@ -8,45 +8,50 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 40 45% 97%;
     --foreground: 215 25% 15%;
 
-    --card: 0 0% 100%;
+    --card: 180 20% 90%;
     --card-foreground: 215 25% 15%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
 
-    /* Deep navy blue - trust and professionalism */
-    --primary: 215 45% 20%;
+    /* Warm dark brown - trust and professionalism */
+    --primary: 47 14% 18%;
     --primary-foreground: 0 0% 100%;
 
     /* Warm gold - victory theme */
     --secondary: 45 95% 50%;
-    --secondary-foreground: 215 45% 20%;
+    --secondary-foreground: 47 14% 18%;
 
-    --muted: 210 20% 96%;
+    /* Subtle warm beige for muted sections */
+    --muted: 38 30% 95%;
     --muted-foreground: 215 15% 50%;
 
-    /* Light blue for accents */
-    --accent: 200 85% 95%;
-    --accent-foreground: 215 45% 20%;
+    /* Light warm accent */
+    --accent: 40 60% 96%;
+    --accent-foreground: 47 14% 18%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 20% 88%;
-    --input: 215 20% 92%;
-    --ring: 215 45% 20%;
+    --border: 40 25% 88%;
+    --input: 40 30% 92%;
+    --ring: 47 14% 18%;
 
     --radius: 0.75rem;
     
     /* Custom colors for real estate theme */
-    --hero-gradient-start: 215 45% 20%;
-    --hero-gradient-end: 215 35% 30%;
+    --hero-gradient-start: 47 14% 18%;
+    --hero-gradient-end: 47 14% 25%;
     --gold: 45 95% 50%;
     --gold-light: 45 95% 95%;
     --trust-blue: 200 60% 45%;
+    
+    /* Warm beige for section backgrounds */
+    --section-bg-light: 38 35% 96%;
+    --section-bg-medium: 38 30% 94%;
     
     /* Shadows */
     --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -55,7 +60,7 @@ All colors MUST be HSL.
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 40 45% 97%;
 
     --sidebar-foreground: 240 5.3% 26.1%;
 
@@ -63,11 +68,11 @@ All colors MUST be HSL.
 
     --sidebar-primary-foreground: 0 0% 98%;
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent: 40 35% 95%;
 
     --sidebar-accent-foreground: 240 5.9% 10%;
 
-    --sidebar-border: 220 13% 91%;
+    --sidebar-border: 40 25% 88%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
@@ -88,30 +93,70 @@ All colors MUST be HSL.
     --secondary: 215 40% 25%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 215 30% 20%;
+    --muted: 38 20% 25%;
     --muted-foreground: 215 15% 65%;
 
-    --accent: 200 60% 25%;
+    --accent: 40 40% 30%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 40%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 215 30% 25%;
-    --input: 215 30% 20%;
+    --border: 38 20% 30%;
+    --input: 38 20% 25%;
     --ring: 45 95% 50%;
     
     --hero-gradient-start: 215 45% 15%;
     --hero-gradient-end: 215 35% 20%;
   }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
 
   body {
     @apply bg-background text-foreground;
   }
+
+  h1 {
+    @apply text-4xl font-bold text-primary;
+  }
+
+  h2 {
+    @apply text-4xl font-semibold text-primary;
+  }
+
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 3rem; /* 5xl */
+      line-height: 1;
+    }
+
+    h2 {
+      font-size: 2.75rem; /* 4.5xl */
+    }
+  }
+
+  .contact-form-wrapper {
+  overflow: hidden;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form-wrapper iframe {
+  display: block;
+  width: 100% !important;
+  border: none !important;
+  
+  /* Hide the header by shifting content up */
+  margin-top: -110px !important;
+  padding-top: 110px !important;
+  box-sizing: border-box !important;
+  
+  min-height: 1000px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .contact-form-wrapper iframe {
+    min-height: 1200px;
+  }
+}
 }
