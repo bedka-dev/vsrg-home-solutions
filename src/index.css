@@ -17,13 +17,13 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
 
-    /* Deep navy blue - trust and professionalism */
-    --primary: 215 45% 20%;
+    /* Warm dark brown - trust and professionalism */
+    --primary: 47 14% 18%;
     --primary-foreground: 0 0% 100%;
 
     /* Warm gold - victory theme */
     --secondary: 45 95% 50%;
-    --secondary-foreground: 215 45% 20%;
+    --secondary-foreground: 47 14% 18%;
 
     /* Subtle warm beige for muted sections */
     --muted: 38 30% 95%;
@@ -31,20 +31,20 @@ All colors MUST be HSL.
 
     /* Light warm accent */
     --accent: 40 60% 96%;
-    --accent-foreground: 215 45% 20%;
+    --accent-foreground: 47 14% 18%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 40 25% 88%;
-    --input: 40 30% 92%; 
-    --ring: 215 45% 20%;
+    --input: 40 30% 92%;
+    --ring: 47 14% 18%;
 
     --radius: 0.75rem;
     
     /* Custom colors for real estate theme */
-    --hero-gradient-start: 215 45% 20%;
-    --hero-gradient-end: 215 35% 30%;
+    --hero-gradient-start: 47 14% 18%;
+    --hero-gradient-end: 47 14% 25%;
     --gold: 45 95% 50%;
     --gold-light: 45 95% 95%;
     --trust-blue: 200 60% 45%;
@@ -132,4 +132,31 @@ All colors MUST be HSL.
       font-size: 2.75rem; /* 4.5xl */
     }
   }
+
+  .contact-form-wrapper {
+  overflow: hidden;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form-wrapper iframe {
+  display: block;
+  width: 100% !important;
+  border: none !important;
+  
+  /* Hide the header by shifting content up */
+  margin-top: -110px !important;
+  padding-top: 110px !important;
+  box-sizing: border-box !important;
+  
+  min-height: 1000px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .contact-form-wrapper iframe {
+    min-height: 1200px;
+  }
+}
 }
