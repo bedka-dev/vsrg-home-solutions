@@ -1,36 +1,25 @@
-import { Button } from "@/components/ui/button";
+import PhoneCTA from "./PhoneCTA";
+import PrimaryCTA from "./PrimaryCTA";
 
 interface CTAButtonsProps {
-  variant?: "light" | "dark"; // light for light backgrounds, dark for dark backgrounds
+  variant?: "light" | "dark";
 }
 
 const CTAButtons = ({ variant = "light" }: CTAButtonsProps) => {
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const isDark = variant === "dark";
 
   return (
-    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button
-        size="lg"
+    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <PhoneCTA
         variant="outline"
-        className={`px-8 py-6 text-lg font-semibold border-2 hover:scale-105 transition-transform ${
-          variant === "dark"
-            ? "!bg-transparent border-primary-foreground !text-primary-foreground hover:bg-primary-foreground/10"
-            : ""
-        }`}
-        onClick={scrollToContact}
-      >
-        Talk to Our Family
-      </Button>
-
-      <Button
-        size="lg"
-        className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-8 py-6 text-lg font-semibold hover:scale-105 transition-transform"
-        onClick={scrollToContact}
-      >
-        Get My Cash Offer
-      </Button>
+        size="medium"
+        darkBackground={isDark}
+      />
+      <PrimaryCTA
+        text="Get My Cash Offer"
+        size="medium"
+        showArrow
+      />
     </div>
   );
 };
