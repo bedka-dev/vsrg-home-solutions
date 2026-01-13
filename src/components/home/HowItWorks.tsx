@@ -134,7 +134,7 @@ const HowItWorks = () => {
                   whileHover="hover"
                   viewport={{ once: false }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-navy-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg" style={{ backgroundColor: '#2E8CB8' }}>
                     {index + 1}
                   </div>
                 </motion.div>
