@@ -98,15 +98,6 @@ const Comparison = () => {
               </div>
             ))}
           </Card>
-
-          <div className="text-center mt-12">
-            <p className="text-xl text-foreground mb-2 font-medium">
-              When you know, you know. Ready?
-            </p>
-            <p className="text-lg text-muted-foreground">
-              Just reach out for an honest conversation with a family who understands.
-            </p>
-          </div>
         </div>
       </div>
     </section>
