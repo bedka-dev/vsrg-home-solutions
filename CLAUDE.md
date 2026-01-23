@@ -14,6 +14,33 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Docker:** `docker-compose up dev` (port 8080) or `docker-compose up prod` (port 80)
 
+## Deployment Workflow
+
+This project follows a **develop-to-main** branching strategy:
+
+```
+main (production releases only)
+  ↑
+develop (integration branch)
+  ↑
+feature/* → PR → merge to develop → test → merge to main
+```
+
+**How it works:**
+
+1. **main**: Production-ready code only. Tagged releases live here.
+2. **develop**: Integration branch where all features are merged and tested.
+3. **Feature branches**: Create from `develop`, work on feature, open PR to merge back to `develop`.
+4. **Testing**: Thoroughly test `develop` branch before merging to `main`.
+5. **Releases**: Merge `develop` → `main` for production releases, then tag the release on `main`.
+
+**Branch Rules:**
+- Never commit directly to `main` or `develop`
+- All feature work happens in `feature/*` branches
+- Feature branches merge into `develop` via PR
+- Only `develop` merges into `main` for releases
+- Delete feature branches after merging
+
 ## Architecture
 
 **Stack:** React 18 + TypeScript + Vite + Tailwind CSS + Shadcn/ui

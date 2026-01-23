@@ -78,3 +78,17 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
+
+## Development Workflow
+
+This project uses a **develop-to-main** branching strategy:
+
+- **main**: Production releases only
+- **develop**: Integration branch for testing features
+- **feature/**: Feature branches that merge into develop
+
+**Workflow:**
+1. Create feature branch from `develop`
+2. Open PR to merge into `develop`
+3. Test thoroughly on `develop`
+4. Merge `develop` → `main` for production releases
