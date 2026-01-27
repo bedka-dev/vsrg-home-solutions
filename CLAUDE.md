@@ -86,11 +86,43 @@ src/
 
 **Styling:** Tailwind utilities + HSL CSS variables for theming. Use `cn()` for conditional classes.
 
-**API Integration:** Backend at `VITE_API_URL` (default: `http://localhost:8000`), lead endpoint: `/api/leads`
+**API Integration:** Backend at `VITE_BACKEND_API_URL` (default: `http://localhost:8000`), lead endpoint: `/api/leads`
 
 ## Environment Variables
 
+Copy `.env.example` to `.env` and configure:
+
+### Required
+```bash
+# Laravel backend API endpoint (no trailing slash)
+VITE_BACKEND_API_URL=http://localhost:8000
+
+# Google Maps API key for address autocomplete
+# Configure restrictions at: https://console.cloud.google.com/google/maps-apis
+VITE_GOOGLE_MAPS_API_KEY=your_api_key_here
 ```
-VITE_GOOGLE_MAPS_API_KEY=<key>  # Google Maps Autocomplete
-VITE_API_URL=http://localhost:8000  # Laravel backend
+
+### Application Defaults
+```bash
+VITE_APP_ENV=development
+VITE_APP_NAME="Victory Springs Realty Group"
+VITE_BUSINESS_PHONE="(972) 211-0909"
+VITE_BUSINESS_EMAIL=info@vsrghomesolutions.com
 ```
+
+### Optional (for future use)
+```bash
+# Feature flags
+VITE_ENABLE_ANALYTICS=false
+VITE_ENABLE_CHAT=false
+
+# Analytics
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+VITE_GTM_ID=GTM-XXXXXXX
+
+# Error tracking
+VITE_SENTRY_DSN=
+VITE_SENTRY_ENVIRONMENT=development
+```
+
+**Note:** The `VITE_` prefix is required by Vite to expose variables to browser code. Variables without this prefix remain server-side only.
