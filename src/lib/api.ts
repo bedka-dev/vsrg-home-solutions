@@ -1,7 +1,7 @@
 // src/lib/api.ts
 export async function submitLead(data: any) {
   const response = await fetch(
-    import.meta.env.VITE_BACKEND_API_URL + '/api/leads',
+    import.meta.env.VITE_BACKEND_API_URL + '/leads',
     {
       method: 'POST',
       headers: {
