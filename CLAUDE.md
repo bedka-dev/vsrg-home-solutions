@@ -14,32 +14,29 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Docker:** `docker-compose up dev` (port 8080) or `docker-compose up prod` (port 80)
 
-## Deployment Workflow
+## Git Workflow
 
-This project follows a **develop-to-main** branching strategy:
+This project uses a **simplified feature-branch workflow**:
 
 ```
-main (production releases only)
+main (production-ready)
   ↑
-develop (integration branch)
-  ↑
-feature/* → PR → merge to develop → test → merge to main
+feature/short-descriptive-name → PR → merge to main
 ```
 
 **How it works:**
 
-1. **main**: Production-ready code only. Tagged releases live here.
-2. **develop**: Integration branch where all features are merged and tested.
-3. **Feature branches**: Create from `develop`, work on feature, open PR to merge back to `develop`.
-4. **Testing**: Thoroughly test `develop` branch before merging to `main`.
-5. **Releases**: Merge `develop` → `main` for production releases, then tag the release on `main`.
+1. **main**: Production-ready code. Always deployable.
+2. **Feature branches**: Create short-lived branches from `main` for each feature/fix
+3. **Pull Requests**: Open PR when ready, review, then merge directly to `main`
+4. **Cleanup**: Delete feature branches immediately after merging
 
 **Branch Rules:**
-- Never commit directly to `main` or `develop`
-- All feature work happens in `feature/*` branches
-- Feature branches merge into `develop` via PR
-- Only `develop` merges into `main` for releases
+- Never commit directly to `main`
+- Keep feature branches small and short-lived (1-3 days max)
+- Create descriptive branch names: `feature/add-contact-form`, `fix/mobile-nav`
 - Delete feature branches after merging
+- Tag releases on `main` (`v1.0.0`, `v1.1.0`, etc.)
 
 ## Architecture
 
@@ -86,7 +83,36 @@ src/
 
 **Styling:** Tailwind utilities + HSL CSS variables for theming. Use `cn()` for conditional classes.
 
-**API Integration:** Backend at `VITE_BACKEND_API_URL` (default: `http://localhost:8000`), lead endpoint: `/api/leads`
+**API Integration:** Backend at `VITE_BACKEND_API_URL` (default: `http://localhost:8000`), lead endpoint: `/leads` (not `/api/leads`)
+
+**Adding New Routes:** Add route to `src/App.tsx` and create corresponding page component in `src/pages/`
+
+## TypeScript Configuration
+
+**Relaxed Mode:** This project uses relaxed TypeScript settings for rapid development:
+- `noImplicitAny: false` - Implicit `any` types allowed
+- `strictNullChecks: false` - Null checks not enforced
+- `noUnusedLocals: false` - Unused variables allowed
+- `noUnusedParameters: false` - Unused parameters allowed
+
+This is intentional for faster iteration. Write type-safe code when practical, but don't let TypeScript block development.
+
+## Docker Development
+
+**Hot Module Replacement (HMR):** Vite is configured with polling for Docker compatibility:
+- `host: "0.0.0.0"` - Binds to all interfaces for Docker networking
+- `strictPort: true` - Won't try alternate ports if 8080 is busy
+- `usePolling: true` - Required for HMR in Docker on Windows/macOS
+
+**Ports:**
+- Development: `8080`
+- Production: `80` (mapped to `8081` in docker-compose)
+
+## Lovable Integration
+
+This project was created with [Lovable](https://lovable.dev) and includes:
+- `lovable-tagger` plugin for component tracking (dev mode only)
+- Project URL: https://lovable.dev/projects/59727211-68d5-403e-811d-3e0bb26fc9ab
 
 ## Environment Variables
 
