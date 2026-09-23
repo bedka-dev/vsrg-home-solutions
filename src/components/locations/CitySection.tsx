@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { colors } from "./colors";
 import { CityLanding, cityImages } from "./citiesData";
 import { MapPin, CheckCircle2, Clock, DollarSign, ArrowRight } from "./Icons";
+import { useGoToContact } from "@/hooks/use-go-to-contact";
 
 interface CitySectionProps {
   city: CityLanding;
@@ -13,6 +14,7 @@ const CitySection = ({ city, index }: CitySectionProps) => {
   const [isInView, setIsInView] = useState(false);
   const isEven = index % 2 === 0;
   const Icon = city.icon;
+  const goToContact = useGoToContact();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -99,9 +101,7 @@ const CitySection = ({ city, index }: CitySectionProps) => {
           Get a fair cash offer in 24 hours. No repairs, no fees, no hassle.
         </p>
         <button
-          onClick={() =>
-            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-          }
+          onClick={goToContact}
           className="w-full font-semibold min-h-[56px] py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition-all hover:scale-105"
           style={{ backgroundColor: colors.secondary, color: colors.primary }}
         >

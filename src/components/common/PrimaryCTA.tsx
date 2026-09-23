@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useGoToContact } from "@/hooks/use-go-to-contact";
 
 type CTASize = "small" | "medium" | "large";
 
@@ -27,11 +28,13 @@ const PrimaryCTA = ({
   className,
   fullWidth = false,
 }: PrimaryCTAProps) => {
+  const goToContact = useGoToContact();
+
   const handleClick = () => {
     if (onClick) {
       onClick();
     } else {
-      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+      goToContact();
     }
   };
 

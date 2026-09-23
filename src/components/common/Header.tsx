@@ -1,7 +1,8 @@
 import { Phone, Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useGoToContact } from "@/hooks/use-go-to-contact";
 
 interface HeaderProps {
   transparent?: boolean; // If true, header starts transparent and becomes solid on scroll
@@ -13,7 +14,9 @@ const Header = ({ transparent = false }: HeaderProps) => {
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
   const solutionsRef = useRef<HTMLDivElement>(null);
+  const solutionsButtonRef = useRef<HTMLButtonElement>(null);
   const location = useLocation();
+  const goToContact = useGoToContact();
 
   const isActive = (path: string) => location.pathname === path;
   const isSolutionsActive = () => ['/challenges', '/how-it-works', '/locations'].includes(location.pathname);
@@ -45,6 +48,21 @@ const Header = ({ transparent = false }: HeaderProps) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Close dropdown on Escape and return focus to the toggle button
+  useEffect(() => {
+    if (!solutionsOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSolutionsOpen(false);
+        solutionsButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [solutionsOpen]);
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
@@ -69,7 +87,7 @@ const Header = ({ transparent = false }: HeaderProps) => {
                 : 'text-primary-foreground hover:text-secondary'
             }`}
           >
-            <Phone className="h-4 w-4" />
+            <Phone className="h-4 w-4" aria-hidden="true" />
             <span>(972) 211-0909</span>
           </a>
         </div>
@@ -86,9 +104,9 @@ const Header = ({ transparent = false }: HeaderProps) => {
           </div>
 
           {/* Desktop Navigation - Centered */}
-          <nav className="hidden md:flex items-center justify-center gap-8">
-            <a
-              href="/"
+          <nav aria-label="Main" className="hidden md:flex items-center justify-center gap-8">
+            <Link
+              to="/"
               className={`transition-colors font-medium pb-1 ${
                 isScrolled
                   ? 'text-foreground hover:text-primary'
@@ -96,9 +114,9 @@ const Header = ({ transparent = false }: HeaderProps) => {
               } ${isActive('/') ? 'border-b-2 border-secondary' : ''}`}
             >
               Home
-            </a>
-            <a
-              href="/about"
+            </Link>
+            <Link
+              to="/about"
               className={`transition-colors font-medium pb-1 ${
                 isScrolled
                   ? 'text-foreground hover:text-primary'
@@ -106,9 +124,13 @@ const Header = ({ transparent = false }: HeaderProps) => {
               } ${isActive('/about') ? 'border-b-2 border-secondary' : ''}`}
             >
               About Us
-            </a>
+            </Link>
             <div className="relative" ref={solutionsRef}>
               <button
+                ref={solutionsButtonRef}
+                type="button"
+                aria-expanded={solutionsOpen}
+                aria-controls="solutions-menu"
                 onClick={() => setSolutionsOpen(!solutionsOpen)}
                 className={`flex items-center gap-1 transition-colors font-medium pb-1 ${
                   isScrolled
@@ -117,44 +139,44 @@ const Header = ({ transparent = false }: HeaderProps) => {
                 } ${isSolutionsActive() ? 'border-b-2 border-secondary' : ''}`}
               >
                 Solutions
-                <ChevronDown className={`h-4 w-4 transition-transform ${solutionsOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown aria-hidden="true" className={`h-4 w-4 transition-transform ${solutionsOpen ? 'rotate-180' : ''}`} />
               </button>
               {solutionsOpen && (
-                <div className={`absolute top-full left-0 mt-2 w-48 rounded-md shadow-lg py-2 ${
+                <div id="solutions-menu" className={`absolute top-full left-0 mt-2 w-48 rounded-md shadow-lg py-2 ${
                   isScrolled ? 'bg-background border border-border' : 'bg-background/95 backdrop-blur'
                 }`}>
-                  <a
-                    href="/challenges"
+                  <Link
+                    to="/challenges"
                     className={`block px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors ${
                       isActive('/challenges') ? 'bg-muted font-semibold' : ''
                     }`}
                     onClick={() => setSolutionsOpen(false)}
                   >
                     Challenges
-                  </a>
-                  <a
-                    href="/how-it-works"
+                  </Link>
+                  <Link
+                    to="/how-it-works"
                     className={`block px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors ${
                       isActive('/how-it-works') ? 'bg-muted font-semibold' : ''
                     }`}
                     onClick={() => setSolutionsOpen(false)}
                   >
                     How It Works
-                  </a>
-                  <a
-                    href="/locations"
+                  </Link>
+                  <Link
+                    to="/locations"
                     className={`block px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors ${
                       isActive('/locations') ? 'bg-muted font-semibold' : ''
                     }`}
                     onClick={() => setSolutionsOpen(false)}
                   >
                     Locations
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className={`transition-colors font-medium pb-1 ${
                 isScrolled
                   ? 'text-foreground hover:text-primary'
@@ -162,14 +184,14 @@ const Header = ({ transparent = false }: HeaderProps) => {
               }`}
             >
               Contact Us
-            </a>
+            </Link>
           </nav>
 
           {/* Button container - fixed width matching logo for centering */}
           <div className="flex items-center justify-end gap-4 w-48">
             <Button
               className="hidden md:inline-flex bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={goToContact}
             >
               Get My Cash Offer
             </Button>
@@ -180,20 +202,23 @@ const Header = ({ transparent = false }: HeaderProps) => {
               className={`md:hidden transition-colors ${
                 isScrolled ? 'text-foreground' : 'text-primary-foreground'
               }`}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              <Menu className="h-6 w-6" />
+              <Menu className="h-6 w-6" aria-hidden="true" />
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <nav className={`md:hidden py-4 border-t space-y-4 ${
+          <nav id="mobile-nav" aria-label="Mobile" className={`md:hidden py-4 border-t space-y-4 ${
             isScrolled ? 'border-border bg-background/95' : 'border-primary-foreground/20 bg-black/40'
           }`}>
-            <a
-              href="/"
+            <Link
+              to="/"
               className={`block transition-colors font-medium ${
                 isScrolled
                   ? 'text-foreground hover:text-primary'
@@ -202,9 +227,9 @@ const Header = ({ transparent = false }: HeaderProps) => {
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
-            </a>
-            <a
-              href="/about"
+            </Link>
+            <Link
+              to="/about"
               className={`block transition-colors font-medium ${
                 isScrolled
                   ? 'text-foreground hover:text-primary'
@@ -213,9 +238,12 @@ const Header = ({ transparent = false }: HeaderProps) => {
               onClick={() => setMobileMenuOpen(false)}
             >
               About Us
-            </a>
+            </Link>
             <div>
               <button
+                type="button"
+                aria-expanded={mobileSolutionsOpen}
+                aria-controls="mobile-solutions-menu"
                 onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
                 className={`flex items-center gap-1 transition-colors font-medium w-full ${
                   isScrolled
@@ -224,12 +252,12 @@ const Header = ({ transparent = false }: HeaderProps) => {
                 } ${isSolutionsActive() ? 'border-l-4 border-secondary pl-2' : ''}`}
               >
                 Solutions
-                <ChevronDown className={`h-4 w-4 transition-transform ${mobileSolutionsOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown aria-hidden="true" className={`h-4 w-4 transition-transform ${mobileSolutionsOpen ? 'rotate-180' : ''}`} />
               </button>
               {mobileSolutionsOpen && (
-                <div className="pl-4 mt-2 space-y-2">
-                  <a
-                    href="/challenges"
+                <div id="mobile-solutions-menu" className="pl-4 mt-2 space-y-2">
+                  <Link
+                    to="/challenges"
                     className={`block transition-colors font-medium ${
                       isScrolled
                         ? 'text-foreground hover:text-primary'
@@ -238,9 +266,9 @@ const Header = ({ transparent = false }: HeaderProps) => {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Challenges
-                  </a>
-                  <a
-                    href="/how-it-works"
+                  </Link>
+                  <Link
+                    to="/how-it-works"
                     className={`block transition-colors font-medium ${
                       isScrolled
                         ? 'text-foreground hover:text-primary'
@@ -249,9 +277,9 @@ const Header = ({ transparent = false }: HeaderProps) => {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     How It Works
-                  </a>
-                  <a
-                    href="/locations"
+                  </Link>
+                  <Link
+                    to="/locations"
                     className={`block transition-colors font-medium ${
                       isScrolled
                         ? 'text-foreground hover:text-primary'
@@ -260,12 +288,12 @@ const Header = ({ transparent = false }: HeaderProps) => {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Locations
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className={`block transition-colors font-medium ${
                 isScrolled
                   ? 'text-foreground hover:text-primary'
@@ -274,12 +302,12 @@ const Header = ({ transparent = false }: HeaderProps) => {
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact Us
-            </a>
+            </Link>
             <Button 
               className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold"
               onClick={() => {
                 setMobileMenuOpen(false);
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                goToContact();
               }}
             >
               Get My Cash Offer

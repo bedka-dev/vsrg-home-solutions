@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Situation } from "./situationsData";
+import { useGoToContact } from "@/hooks/use-go-to-contact";
 
 interface SituationCarouselProps {
   situations: Situation[];
@@ -28,6 +29,7 @@ const slideVariants = {
 
 const SituationCarousel = ({ situations, selectedIndex, onIndexChange }: SituationCarouselProps) => {
   const selectedSituation = situations[selectedIndex];
+  const goToContact = useGoToContact();
 
   const paginate = (newDirection: number) => {
     let nextIndex = selectedIndex + newDirection;
@@ -139,11 +141,7 @@ const SituationCarousel = ({ situations, selectedIndex, onIndexChange }: Situati
                 <Button
                   size="lg"
                   className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-8 py-6 font-semibold text-lg"
-                  onClick={() => {
-                    document
-                      .getElementById("contact")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
+                  onClick={goToContact}
                 >
                   {selectedSituation.cta}
                 </Button>
