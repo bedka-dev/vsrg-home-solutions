@@ -24,11 +24,11 @@ const Footer = () => {
                 <span>(972) 211-0909</span>
               </a>
               <a 
-                href="mailto:info@victoryspringsrealty.com" 
+                href="mailto:info@victoryspringsrg.com" 
                 className="flex items-center gap-2 text-primary-foreground/80 hover:text-secondary transition-colors"
               >
                 <Mail className="h-4 w-4" aria-hidden="true" />
-                <span>info@victoryspringsrealty.com</span>
+                <span>info@victoryspringsrg.com</span>
               </a>
               <div className="flex items-start gap-2 text-primary-foreground/80">
                 <MapPin className="h-4 w-4 mt-1 flex-shrink-0" aria-hidden="true" />
