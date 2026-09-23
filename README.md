@@ -1,7 +1,6 @@
+# Victory Springs Realty Group — VSRG Home Solutions
 
-## Project info
-
-**URL**: https://lovable.dev/projects/59727211-68d5-403e-811d-3e0bb26fc9ab
+Marketing site for Victory Springs Realty Group, a DFW cash home buyer. Built with React, TypeScript, Vite, Tailwind CSS and shadcn/ui.
 
 ## How can I edit this code?
 
@@ -9,7 +8,7 @@ There are several ways of editing your application.
 
 **Use your preferred IDE**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Clone this repo, work on a feature branch, and push your changes.
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
