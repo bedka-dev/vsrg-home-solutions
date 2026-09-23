@@ -27,7 +27,7 @@ All colors MUST be HSL.
 
     /* Subtle warm beige for muted sections */
     --muted: 38 30% 95%;
-    --muted-foreground: 215 15% 50%;
+    --muted-foreground: 215 15% 42%;
 
     /* Light warm accent */
     --accent: 40 60% 96%;

@@ -60,7 +60,7 @@ const AddressCTA = ({
         <button
           type="submit"
           className="flex items-center justify-center gap-2 px-8 py-4 sm:py-5 text-lg font-bold text-white transition-all hover:opacity-90 min-h-[56px]"
-          style={{ backgroundColor: "#2E8CB8" }}
+          style={{ backgroundColor: "#277AA1" }}
         >
           {buttonText}
           <ArrowRight className="w-5 h-5" aria-hidden="true" />

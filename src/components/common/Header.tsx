@@ -71,17 +71,18 @@ const Header = ({ transparent = false }: HeaderProps) => {
     }`}>
       <div className="container mx-auto px-4">
         {/* Top bar with phone */}
-        <div className={`flex items-center justify-between py-3 border-b transition-colors ${
+        {/* Stacked on phones so neither line wraps; side by side from sm up */}
+        <div className={`flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between py-3 border-b transition-colors ${
           isScrolled ? 'border-border' : 'border-transparent'
         }`}>
-          <div className={`text-sm font-semibold transition-colors ${
+          <div className={`text-sm font-semibold whitespace-nowrap transition-colors ${
             isScrolled ? 'text-muted-foreground' : 'text-primary-foreground'
           }`}>
             Victory Springs Realty Group
           </div>
           <a 
             href="tel:9722110909" 
-            className={`flex items-center gap-2 font-semibold transition-colors ${
+            className={`flex items-center gap-2 font-semibold whitespace-nowrap transition-colors ${
               isScrolled 
                 ? 'text-primary hover:text-secondary' 
                 : 'text-primary-foreground hover:text-secondary'

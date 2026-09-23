@@ -135,7 +135,7 @@ const HowItWorks = () => {
                   viewport={{ once: false }}
                   aria-hidden="true"
                 >
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg" style={{ backgroundColor: '#2E8CB8' }}>
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg" style={{ backgroundColor: '#277AA1' }}>
                     {index + 1}
                   </div>
                 </motion.div>
