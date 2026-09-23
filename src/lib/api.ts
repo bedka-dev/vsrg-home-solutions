@@ -1,5 +1,19 @@
 // src/lib/api.ts
-export async function submitLead(data: any) {
+export type LeadPayload = {
+  full_name: string;
+  email: string | null;
+  phone: string;
+  property_address: string;
+  property_address_2: string | null;
+  city: string | null;
+  state: string | null;
+  zip: string | null;
+  message: string | null;
+  sms_opt_in: boolean;
+  source: string;
+};
+
+export async function submitLead(data: LeadPayload): Promise<unknown> {
   const response = await fetch(
     import.meta.env.VITE_BACKEND_API_URL + '/leads',
     {
