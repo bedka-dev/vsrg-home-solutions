@@ -109,8 +109,8 @@ const HowItWorks = () => {
         </motion.div>
 
         {/* Steps Grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-4 gap-8"
+        <motion.ol
+          className="grid grid-cols-1 md:grid-cols-4 gap-8 list-none"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -119,7 +119,7 @@ const HowItWorks = () => {
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
-              <motion.div
+              <motion.li
                 key={index}
                 className="relative group"
                 variants={cardVariants}
@@ -133,6 +133,7 @@ const HowItWorks = () => {
                   whileInView="visible"
                   whileHover="hover"
                   viewport={{ once: false }}
+                  aria-hidden="true"
                 >
                   <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg" style={{ backgroundColor: '#2E8CB8' }}>
                     {index + 1}
@@ -154,7 +155,7 @@ const HowItWorks = () => {
                     whileHover="hover"
                     viewport={{ once: false }}
                   >
-                    <Icon className={`w-12 h-12 ${step.color}`} strokeWidth={1.5} />
+                    <Icon className={`w-12 h-12 ${step.color}`} strokeWidth={1.5} aria-hidden="true" />
                   </motion.div>
 
                   {/* Title */}
@@ -186,13 +187,13 @@ const HowItWorks = () => {
                     whileHover={{ scale: 1, rotate: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <CheckCircle2 className="w-6 h-6 text-green-500" />
+                    <CheckCircle2 className="w-6 h-6 text-green-500" aria-hidden="true" />
                   </motion.div>
                 </motion.div>
-              </motion.div>
+              </motion.li>
             );
           })}
-        </motion.div>
+        </motion.ol>
 
         {/* Bottom CTA */}
         <motion.div
@@ -206,6 +207,7 @@ const HowItWorks = () => {
             Ready to get started? It's as easy as 1, 2, 3, 4!
           </p>
           <motion.button
+            type="button"
             className="px-8 py-3 bg-secondary text-secondary-foreground rounded-lg font-semibold hover:bg-secondary/90 transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

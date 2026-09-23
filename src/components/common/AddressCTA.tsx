@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Autocomplete from "react-google-autocomplete";
 import { ArrowRight } from "lucide-react";
@@ -19,6 +19,7 @@ const AddressCTA = ({
   buttonText = "GET MY OFFER",
 }: AddressCTAProps) => {
   const [address, setAddress] = useState("");
+  const inputId = useId();
   const navigate = useNavigate();
 
   const handleAddressSelect = (place: PlaceResult) => {
@@ -40,7 +41,11 @@ const AddressCTA = ({
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-3xl mx-auto">
       <div className="flex flex-col sm:flex-row bg-white rounded-xl sm:rounded-full overflow-hidden shadow-lg">
+        <label htmlFor={inputId} className="sr-only">
+          Property address
+        </label>
         <Autocomplete
+          id={inputId}
           apiKey={GOOGLE_MAPS_API_KEY}
           onPlaceSelected={handleAddressSelect}
           options={{
@@ -58,7 +63,7 @@ const AddressCTA = ({
           style={{ backgroundColor: "#2E8CB8" }}
         >
           {buttonText}
-          <ArrowRight className="w-5 h-5" />
+          <ArrowRight className="w-5 h-5" aria-hidden="true" />
         </button>
       </div>
     </form>

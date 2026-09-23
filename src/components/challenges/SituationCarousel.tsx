@@ -158,19 +158,24 @@ const SituationCarousel = ({ situations, selectedIndex, onIndexChange }: Situati
           >
             {/* Left Arrow */}
             <motion.button
+              type="button"
+              aria-label="Previous situation"
               onClick={() => paginate(-1)}
               className="p-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-6 h-6" aria-hidden="true" />
             </motion.button>
 
             {/* Indicator Dots */}
             <div className="flex gap-2">
-              {situations.map((_, idx) => (
+              {situations.map((situation, idx) => (
                 <motion.button
                   key={idx}
+                  type="button"
+                  aria-label={`Show ${situation.fullTitle}`}
+                  aria-current={idx === selectedIndex ? "true" : undefined}
                   onClick={() => onIndexChange(idx)}
                   className={`h-2 rounded-full transition-all ${
                     idx === selectedIndex
@@ -184,12 +189,14 @@ const SituationCarousel = ({ situations, selectedIndex, onIndexChange }: Situati
 
             {/* Right Arrow */}
             <motion.button
+              type="button"
+              aria-label="Next situation"
               onClick={() => paginate(1)}
               className="p-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-6 h-6" aria-hidden="true" />
             </motion.button>
           </motion.div>
 
