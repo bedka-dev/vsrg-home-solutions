@@ -79,7 +79,7 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" className="relative bg-hero-gradient text-primary-foreground overflow-hidden h-screen pt-20">
+    <section id="home" className="relative bg-hero-gradient text-primary-foreground overflow-hidden min-h-screen flex items-center pt-40 pb-16 md:pt-36">
       {/* Fallback Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
@@ -112,7 +112,7 @@ const Hero = () => {
         transition={{ duration: 1.5 }}
       />
       
-      <div className="container mx-auto px-4 py-20 md:py-32 relative z-10 h-full flex items-center">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div 
           className="max-w-4xl mx-auto text-center w-full"
           variants={containerVariants}
