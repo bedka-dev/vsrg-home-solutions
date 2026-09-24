@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Situation } from "./situationsData";
+import { goToLeadForm } from "@/lib/navigation";
 
 interface SituationCarouselProps {
   situations: Situation[];
@@ -139,11 +140,7 @@ const SituationCarousel = ({ situations, selectedIndex, onIndexChange }: Situati
                 <Button
                   size="lg"
                   className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-8 py-6 font-semibold text-lg"
-                  onClick={() => {
-                    document
-                      .getElementById("contact")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
+                  onClick={goToLeadForm}
                 >
                   {selectedSituation.cta}
                 </Button>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Phone, ArrowRight } from "lucide-react";
 import { PHONE_TEL, PHONE_NUMBER } from "./PhoneCTA";
 import { cn } from "@/lib/utils";
+import { goToLeadForm } from "@/lib/navigation";
 
 interface StickyMobileCTAProps {
   scrollThreshold?: number;
@@ -26,7 +27,7 @@ const StickyMobileCTA = ({
   }, [scrollThreshold]);
 
   const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    goToLeadForm();
   };
 
   return (
