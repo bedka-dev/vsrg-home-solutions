@@ -2,6 +2,7 @@ import { Phone, Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import Logo from "./Logo";
 
 interface HeaderProps {
   transparent?: boolean; // If true, header starts transparent and becomes solid on scroll
@@ -78,11 +79,7 @@ const Header = ({ transparent = false }: HeaderProps) => {
         <div className="flex items-center justify-between py-4">
           {/* Logo - fixed width for centering */}
           <div className="flex items-center gap-2 w-48">
-            <div className={`font-bold text-2xl transition-colors ${
-              isScrolled ? 'text-primary' : 'text-primary-foreground'
-            }`}>
-              VSRG
-            </div>
+            <Logo variant={isScrolled ? 'dark' : 'light'} className="h-10 md:h-12" />
           </div>
 
           {/* Desktop Navigation - Centered */}

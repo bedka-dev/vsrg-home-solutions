@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin } from "lucide-react";
+import Logo from "./Logo";
 
 const Footer = () => {
   return (
@@ -6,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16 mb-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4">Victory Springs Realty Group</h3>
+            <Logo variant="light" className="h-14 mb-4" />
             <p className="text-primary-foreground/80">
               Helping DFW homeowners sell their properties quickly and fairly since day one.
             </p>
