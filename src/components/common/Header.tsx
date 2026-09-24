@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Logo from "./Logo";
+import { goToLeadForm } from "@/lib/navigation";
 
 interface HeaderProps {
   transparent?: boolean; // If true, header starts transparent and becomes solid on scroll
@@ -18,6 +19,7 @@ const Header = ({ transparent = false }: HeaderProps) => {
 
   const isActive = (path: string) => location.pathname === path;
   const isSolutionsActive = () => ['/challenges', '/how-it-works', '/locations'].includes(location.pathname);
+
 
   // Add scroll listener to change header background (only if transparent mode)
   useEffect(() => {
@@ -57,7 +59,7 @@ const Header = ({ transparent = false }: HeaderProps) => {
         <div className={`flex items-center justify-between py-3 border-b transition-colors ${
           isScrolled ? 'border-border' : 'border-transparent'
         }`}>
-          <div className={`text-sm font-semibold transition-colors ${
+          <div className={`hidden md:block text-sm font-semibold transition-colors ${
             isScrolled ? 'text-muted-foreground' : 'text-primary-foreground'
           }`}>
             Victory Springs Realty Group
@@ -166,7 +168,7 @@ const Header = ({ transparent = false }: HeaderProps) => {
           <div className="flex items-center justify-end gap-4 w-48">
             <Button
               className="hidden md:inline-flex bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={goToLeadForm}
             >
               Get My Cash Offer
             </Button>
@@ -262,7 +264,7 @@ const Header = ({ transparent = false }: HeaderProps) => {
               )}
             </div>
             <a
-              href="#contact"
+              href="/contact"
               className={`block transition-colors font-medium ${
                 isScrolled
                   ? 'text-foreground hover:text-primary'
@@ -276,7 +278,7 @@ const Header = ({ transparent = false }: HeaderProps) => {
               className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold"
               onClick={() => {
                 setMobileMenuOpen(false);
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                goToLeadForm();
               }}
             >
               Get My Cash Offer

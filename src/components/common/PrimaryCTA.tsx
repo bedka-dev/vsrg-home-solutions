@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { goToLeadForm } from "@/lib/navigation";
 
 type CTASize = "small" | "medium" | "large";
 
@@ -31,7 +32,7 @@ const PrimaryCTA = ({
     if (onClick) {
       onClick();
     } else {
-      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+      goToLeadForm();
     }
   };
 

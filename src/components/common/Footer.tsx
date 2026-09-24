@@ -7,6 +7,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16 mb-8">
           <div>
+            <h3 className="sr-only">Victory Springs Realty Group</h3>
             <Logo variant="light" className="h-14 mb-4" />
             <p className="text-primary-foreground/80">
               Helping DFW homeowners sell their properties quickly and fairly since day one.
@@ -40,16 +41,16 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <nav className="space-y-2">
-              <a href="#home" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
+              <a href="/" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
                 Home
               </a>
-              <a href="#about" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
+              <a href="/about" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
                 About Us
               </a>
-              <a href="#how-it-works" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
+              <a href="/how-it-works" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
                 How It Works
               </a>
-              <a href="#contact" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
+              <a href="/contact" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
                 Contact Us
               </a>
             </nav>
