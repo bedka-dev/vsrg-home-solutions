@@ -1,4 +1,4 @@
-import aboutHeroImg from "@/assets/about-us/conversation.png";
+import aboutHeroImg from "@/assets/about-us/conversation.jpg";
 
 const AboutHero = () => {
   return (
@@ -7,9 +7,9 @@ const AboutHero = () => {
         <div className="py-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
           {/* Left: Text */}
           <div>
-            <h2 className="mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
               Our Story
-            </h2>
+            </h1>
             <p className="text-lg text-foreground leading-relaxed mb-4">
               Victory Springs Realty Group began as a simple promise between a father and his daughter — to use their skills and values to create something meaningful for families facing challenges.
             </p>

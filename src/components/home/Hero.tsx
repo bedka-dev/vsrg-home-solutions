@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
-import { motion, useViewportScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import heroImage from "@/assets/hero-dfw.jpeg";
 
 const Hero = () => {
   // Get scroll position for parallax
-  const { scrollY } = useViewportScroll();
-  const videoOpacity = useTransform(scrollY, [0, 200], [1, 0.5]);
-  const videoScale = useTransform(scrollY, [0, 300], [1, 1.1]);
+  const { scrollY } = useScroll();
+  const shouldReduceMotion = useReducedMotion();
+  const videoOpacity = useTransform(scrollY, [0, 200], shouldReduceMotion ? [1, 1] : [1, 0.5]);
+  const videoScale = useTransform(scrollY, [0, 300], shouldReduceMotion ? [1, 1] : [1, 1.1]);
 
   // Animation variants
   const containerVariants = {
@@ -79,7 +80,7 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" className="relative bg-hero-gradient text-primary-foreground overflow-hidden h-screen pt-20">
+    <section id="home" className="relative bg-hero-gradient text-primary-foreground overflow-hidden min-h-screen flex items-center pt-40 pb-16 md:pt-36">
       {/* Fallback Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
@@ -88,21 +89,23 @@ const Hero = () => {
         }}
       />
       
-      {/* Animated Video Background with Parallax */}
-      <motion.video
-        autoPlay
-        muted
-        loop
-        playsInline
-        style={{
-          opacity: videoOpacity,
-          scale: videoScale,
-        }}
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src="/videos/hero-dfw.mp4" type="video/mp4" />
-        <source src="/videos/hero-dfw.webm" type="video/webm" />
-      </motion.video>
+      {/* Animated Video Background with Parallax (skipped for reduced motion; fallback image shows instead) */}
+      {!shouldReduceMotion && (
+        <motion.video
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+          style={{
+            opacity: videoOpacity,
+            scale: videoScale,
+          }}
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/videos/hero-dfw.mp4" type="video/mp4" />
+        </motion.video>
+      )}
 
       {/* Dark Overlay for Text Readability */}
       <motion.div 
@@ -112,7 +115,7 @@ const Hero = () => {
         transition={{ duration: 1.5 }}
       />
       
-      <div className="container mx-auto px-4 py-20 md:py-32 relative z-10 h-full flex items-center">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div 
           className="max-w-4xl mx-auto text-center w-full"
           variants={containerVariants}
@@ -170,14 +173,14 @@ const Hero = () => {
           </motion.div>
 
           {/* Key Benefits Grid */}
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto"
+          <motion.ul 
+            className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto list-none"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             {benefits.map((benefit, index) => (
-              <motion.div 
+              <motion.li 
                 key={index}
                 className="bg-background/10 backdrop-blur rounded-lg p-6 border border-primary-foreground/20 hover:bg-background/20 transition-colors"
                 variants={cardVariants}
@@ -188,13 +191,13 @@ const Hero = () => {
                   whileHover={{ scale: 1.1, rotate: 360 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <CheckCircle2 className="h-10 w-10 mb-3 text-secondary mx-auto" />
+                  <CheckCircle2 className="h-10 w-10 mb-3 text-secondary mx-auto" aria-hidden="true" />
                 </motion.div>
-                <h3 className="font-semibold text-lg mb-2">{benefit.title}</h3>
+                <p className="font-semibold text-lg mb-2">{benefit.title}</p>
                 <p className="text-sm text-primary-foreground/80">{benefit.description}</p>
-              </motion.div>
+              </motion.li>
             ))}
-          </motion.div>
+          </motion.ul>
         </motion.div>
       </div>
     </section>

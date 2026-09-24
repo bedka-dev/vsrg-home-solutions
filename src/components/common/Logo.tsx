@@ -1,5 +1,6 @@
 import logoWhite from "@/assets/brand/logo-white.webp";
 import logoNavy from "@/assets/brand/logo-navy.webp";
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -9,7 +10,7 @@ interface LogoProps {
 
 const Logo = ({ variant = "light", className }: LogoProps) => {
   return (
-    <a href="/" aria-label="Victory Springs Realty Group home" className="inline-flex shrink-0">
+    <Link to="/" aria-label="Victory Springs Realty Group home" className="inline-flex shrink-0">
       <img
         src={variant === "light" ? logoWhite : logoNavy}
         alt="Victory Springs Realty Group"
@@ -17,7 +18,7 @@ const Logo = ({ variant = "light", className }: LogoProps) => {
         height={273}
         className={cn("h-10 w-auto transition-opacity", className)}
       />
-    </a>
+    </Link>
   );
 };
 

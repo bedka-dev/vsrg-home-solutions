@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { goToLeadForm } from "@/lib/navigation";
+import { useGoToContact } from "@/hooks/use-go-to-contact";
 
 type CTASize = "small" | "medium" | "large";
 
@@ -28,11 +28,13 @@ const PrimaryCTA = ({
   className,
   fullWidth = false,
 }: PrimaryCTAProps) => {
+  const goToContact = useGoToContact();
+
   const handleClick = () => {
     if (onClick) {
       onClick();
     } else {
-      goToLeadForm();
+      goToContact();
     }
   };
 
