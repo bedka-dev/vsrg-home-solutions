@@ -14,7 +14,7 @@ const Logo = ({ variant = "light", className }: LogoProps) => {
         src={variant === "light" ? logoWhite : logoNavy}
         alt="Victory Springs Realty Group"
         width={800}
-        height={256}
+        height={273}
         className={cn("h-10 w-auto transition-opacity", className)}
       />
     </a>
