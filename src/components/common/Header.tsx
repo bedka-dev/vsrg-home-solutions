@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useGoToContact } from "@/hooks/use-go-to-contact";
+import Logo from "./Logo";
 
 interface HeaderProps {
   transparent?: boolean; // If true, header starts transparent and becomes solid on scroll
@@ -20,6 +21,7 @@ const Header = ({ transparent = false }: HeaderProps) => {
 
   const isActive = (path: string) => location.pathname === path;
   const isSolutionsActive = () => ['/challenges', '/how-it-works', '/locations'].includes(location.pathname);
+
 
   // Add scroll listener to change header background (only if transparent mode)
   useEffect(() => {
@@ -71,11 +73,11 @@ const Header = ({ transparent = false }: HeaderProps) => {
     }`}>
       <div className="container mx-auto px-4">
         {/* Top bar with phone */}
-        {/* Stacked on phones so neither line wraps; side by side from sm up */}
+        {/* Company name is hidden below md (the logo already shows it); phone never wraps */}
         <div className={`flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between py-3 border-b transition-colors ${
           isScrolled ? 'border-border' : 'border-transparent'
         }`}>
-          <div className={`text-sm font-semibold whitespace-nowrap transition-colors ${
+          <div className={`hidden md:block text-sm font-semibold whitespace-nowrap transition-colors ${
             isScrolled ? 'text-muted-foreground' : 'text-primary-foreground'
           }`}>
             Victory Springs Realty Group
@@ -97,11 +99,7 @@ const Header = ({ transparent = false }: HeaderProps) => {
         <div className="flex items-center justify-between py-4">
           {/* Logo - fixed width for centering */}
           <div className="flex items-center gap-2 w-48">
-            <div className={`font-bold text-2xl transition-colors ${
-              isScrolled ? 'text-primary' : 'text-primary-foreground'
-            }`}>
-              VSRG
-            </div>
+            <Logo variant={isScrolled ? 'dark' : 'light'} className="h-10 md:h-12" />
           </div>
 
           {/* Desktop Navigation - Centered */}
