@@ -1,9 +1,10 @@
-import { useState, useRef } from "react";
-import Autocomplete from "react-google-autocomplete";
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { submitLead } from "@/lib/api";
+import type { ParsedAddress } from "@/lib/googleMaps";
+import AddressAutocomplete from "@/components/common/AddressAutocomplete";
 import {
   Home,
   ArrowRight,
@@ -25,20 +26,8 @@ interface ContactFormProps {
   source?: string;
 }
 
-interface AddressComponent {
-  long_name: string;
-  short_name: string;
-  types: string[];
-}
-
-interface PlaceResult {
-  formatted_address?: string;
-  address_components?: AddressComponent[];
-}
-
 const PHONE_NUMBER = "(972) 211-0909";
 const PHONE_TEL = "tel:9722110909";
-const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 const ContactForm = ({
   title = "Get My Cash Offer",
@@ -65,7 +54,6 @@ const ContactForm = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const autocompleteRef = useRef<HTMLInputElement>(null);
 
   const formatPhoneNumber = (value: string): string => {
     // Remove all non-digit characters
@@ -78,44 +66,19 @@ const ContactForm = ({
     return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
   };
 
-  const handleAddressSelect = (place: PlaceResult) => {
-    if (!place.address_components) return;
-
-    let streetNumber = "";
-    let route = "";
-    let city = "";
-    let state = "";
-    let zip = "";
-
-    place.address_components.forEach((component) => {
-      const types = component.types;
-
-      if (types.includes("street_number")) {
-        streetNumber = component.long_name;
-      }
-      if (types.includes("route")) {
-        route = component.long_name;
-      }
-      if (types.includes("locality") || types.includes("sublocality")) {
-        city = component.long_name;
-      }
-      if (types.includes("administrative_area_level_1")) {
-        state = component.short_name;
-      }
-      if (types.includes("postal_code")) {
-        zip = component.long_name;
-      }
-    });
-
-    const streetAddress = streetNumber ? `${streetNumber} ${route}` : route;
-
+  const handleAddressSelect = (address: ParsedAddress) => {
     setFormData((prev) => ({
       ...prev,
-      property_address: streetAddress || place.formatted_address || "",
-      city,
-      state,
-      zip,
+      property_address: address.street || address.formatted,
+      city: address.city,
+      state: address.state,
+      zip: address.zip,
     }));
+  };
+
+  const handleAddressChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, property_address: value }));
+    if (error) setError(null);
   };
 
   const handleChange = (
@@ -267,17 +230,15 @@ const ContactForm = ({
         </label>
         <div className="relative">
           <Home className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground z-10" />
-          <Autocomplete
-            apiKey={GOOGLE_MAPS_API_KEY}
-            onPlaceSelected={handleAddressSelect}
-            options={{
-              types: ["address"],
-              componentRestrictions: { country: "us" },
-            }}
-            defaultValue={formData.property_address}
-            ref={autocompleteRef}
+          <AddressAutocomplete
+            id="property_address"
+            name="property_address"
+            value={formData.property_address}
+            onChange={handleAddressChange}
+            onAddressSelect={handleAddressSelect}
             placeholder="Start typing your address..."
-            className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-10 min-h-[56px]"
+            inputClassName="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-10 min-h-[56px]"
+            required
             disabled={isSubmitting}
           />
         </div>
