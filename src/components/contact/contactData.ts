@@ -1,6 +1,6 @@
 export const PHONE_NUMBER = "(972) 211-0909";
 export const PHONE_TEL = "tel:9722110909";
-export const EMAIL = "info@victoryspringsrealty.com";
+export const EMAIL = "info@victoryspringsrg.com";
 
 export const serviceAreas = [
   "Dallas",

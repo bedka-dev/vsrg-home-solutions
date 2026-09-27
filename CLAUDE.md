@@ -16,23 +16,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Git Workflow
 
-This project uses a **simplified feature-branch workflow**:
+This project uses a **develop-to-main workflow**:
 
 ```
-main (production-ready)
-  ↑
-feature/short-descriptive-name → PR → merge to main
+main (production releases)
+  ↑  release PR
+develop (integration & testing)
+  ↑  PR
+feature/short-descriptive-name
 ```
 
 **How it works:**
 
-1. **main**: Production-ready code. Always deployable.
-2. **Feature branches**: Create short-lived branches from `main` for each feature/fix
-3. **Pull Requests**: Open PR when ready, review, then merge directly to `main`
-4. **Cleanup**: Delete feature branches immediately after merging
+1. **main**: Production releases only. Always deployable.
+2. **develop**: Integration branch where features are combined and tested.
+3. **Feature branches**: Create short-lived branches from `develop` for each feature/fix.
+4. **Pull Requests**: Open PRs from feature branches into `develop`; test thoroughly on `develop`.
+5. **Releases**: Merge `develop` → `main` via PR when ready to ship.
+6. **Cleanup**: Delete feature branches immediately after merging.
 
 **Branch Rules:**
-- Never commit directly to `main`
+- Never commit directly to `main` or `develop`
+- Feature branches start from `develop` and PR back into `develop`
 - Keep feature branches small and short-lived (1-3 days max)
 - Create descriptive branch names: `feature/add-contact-form`, `fix/mobile-nav`
 - Delete feature branches after merging
@@ -108,12 +113,6 @@ This is intentional for faster iteration. Write type-safe code when practical, b
 - Development: `8080`
 - Production: `80` (mapped to `8081` in docker-compose)
 
-## Lovable Integration
-
-This project was created with [Lovable](https://lovable.dev) and includes:
-- `lovable-tagger` plugin for component tracking (dev mode only)
-- Project URL: https://lovable.dev/projects/59727211-68d5-403e-811d-3e0bb26fc9ab
-
 ## Environment Variables
 
 Copy `.env.example` to `.env` and configure:
@@ -133,7 +132,7 @@ VITE_GOOGLE_MAPS_API_KEY=your_api_key_here
 VITE_APP_ENV=development
 VITE_APP_NAME="Victory Springs Realty Group"
 VITE_BUSINESS_PHONE="(972) 211-0909"
-VITE_BUSINESS_EMAIL=info@vsrghomesolutions.com
+VITE_BUSINESS_EMAIL=info@victoryspringsrg.com
 ```
 
 ### Optional (for future use)

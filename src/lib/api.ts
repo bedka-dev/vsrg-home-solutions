@@ -1,5 +1,5 @@
 // src/lib/api.ts
-export interface LeadPayload {
+export type LeadPayload = {
   full_name: string;
   email: string | null;
   phone: string;
@@ -11,9 +11,9 @@ export interface LeadPayload {
   message: string | null;
   sms_opt_in: boolean;
   source: string;
-}
+};
 
-export async function submitLead(data: LeadPayload) {
+export async function submitLead(data: LeadPayload): Promise<unknown> {
   const response = await fetch(
     import.meta.env.VITE_BACKEND_API_URL + '/leads',
     {

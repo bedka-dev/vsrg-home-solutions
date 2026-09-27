@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
 const Footer = () => {
@@ -21,18 +22,18 @@ const Footer = () => {
                 href="tel:9722110909" 
                 className="flex items-center gap-2 text-primary-foreground/80 hover:text-secondary transition-colors"
               >
-                <Phone className="h-4 w-4" />
+                <Phone className="h-4 w-4" aria-hidden="true" />
                 <span>(972) 211-0909</span>
               </a>
               <a 
-                href="mailto:info@victoryspringsrealty.com" 
+                href="mailto:info@victoryspringsrg.com" 
                 className="flex items-center gap-2 text-primary-foreground/80 hover:text-secondary transition-colors"
               >
-                <Mail className="h-4 w-4" />
-                <span>info@victoryspringsrealty.com</span>
+                <Mail className="h-4 w-4" aria-hidden="true" />
+                <span>info@victoryspringsrg.com</span>
               </a>
               <div className="flex items-start gap-2 text-primary-foreground/80">
-                <MapPin className="h-4 w-4 mt-1 flex-shrink-0" />
+                <MapPin className="h-4 w-4 mt-1 flex-shrink-0" aria-hidden="true" />
                 <span>1245 Blessed St, Suite #190<br />Dallas, TX 76227</span>
               </div>
             </div>
@@ -40,19 +41,19 @@ const Footer = () => {
 
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <nav className="space-y-2">
-              <a href="/" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
+            <nav aria-label="Footer" className="space-y-2">
+              <Link to="/" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
                 Home
-              </a>
-              <a href="/about" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
+              </Link>
+              <Link to="/about" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
                 About Us
-              </a>
-              <a href="/how-it-works" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
+              </Link>
+              <Link to="/how-it-works" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
                 How It Works
-              </a>
-              <a href="/contact" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
+              </Link>
+              <Link to="/contact" className="block text-primary-foreground/80 hover:text-secondary transition-colors">
                 Contact Us
-              </a>
+              </Link>
             </nav>
           </div>
         </div>
