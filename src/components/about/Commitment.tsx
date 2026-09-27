@@ -34,7 +34,7 @@ const Commitment = () => {
   };
 
   return (
-    <section className="py-24 bg-primary text-primary-foreground">
+    <section className="py-24 bg-primary text-primary-foreground overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Left: Our Commitment */}
