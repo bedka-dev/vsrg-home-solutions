@@ -58,17 +58,21 @@ const Comparison = () => {
         </div>
 
         <div className="max-w-5xl mx-auto">
-          <Card className="overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-3 bg-primary text-primary-foreground">
-              <div className="p-6">
-                <h3 className="text-xl font-semibold">Feature</h3>
+          <Card
+            className="overflow-hidden"
+            role="table"
+            aria-label="Direct cash buyer vs traditional agent comparison"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-3 bg-primary text-primary-foreground" role="row">
+              <div className="p-6" role="columnheader">
+                <p className="text-xl font-semibold">Feature</p>
               </div>
-              <div className="p-6 bg-secondary text-secondary-foreground">
-                <h3 className="text-xl font-semibold">Direct Cash Buyer</h3>
+              <div className="p-6 bg-secondary text-secondary-foreground" role="columnheader">
+                <p className="text-xl font-semibold">Direct Cash Buyer</p>
                 <p className="text-sm opacity-90">Fast, simple, guaranteed</p>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold">Traditional Agent</h3>
+              <div className="p-6" role="columnheader">
+                <p className="text-xl font-semibold">Traditional Agent</p>
                 <p className="text-sm opacity-90">Standard market listing</p>
               </div>
             </div>
@@ -79,19 +83,20 @@ const Comparison = () => {
                 className={`grid grid-cols-1 md:grid-cols-3 ${
                   index % 2 === 0 ? "bg-background" : "bg-muted"
                 }`}
+                role="row"
               >
-                <div className="p-6 font-medium text-foreground border-b md:border-b-0 md:border-r border-border">
+                <div className="p-6 font-medium text-foreground border-b md:border-b-0 md:border-r border-border" role="rowheader">
                   {item.feature}
                 </div>
-                <div className="p-6 border-b md:border-b-0 md:border-r border-border bg-accent/30">
+                <div className="p-6 border-b md:border-b-0 md:border-r border-border bg-accent/30" role="cell">
                   <div className="flex items-center gap-2">
-                    <Check className="h-5 w-5 text-green-600 flex-shrink-0" />
+                    <Check className="h-5 w-5 text-green-600 flex-shrink-0" aria-hidden="true" />
                     <span className="font-semibold text-foreground">{item.us.value}</span>
                   </div>
                 </div>
-                <div className="p-6 border-b md:border-b-0 border-border">
+                <div className="p-6 border-b md:border-b-0 border-border" role="cell">
                   <div className="flex items-center gap-2">
-                    <X className="h-5 w-5 text-destructive flex-shrink-0" />
+                    <X className="h-5 w-5 text-destructive flex-shrink-0" aria-hidden="true" />
                     <span className="text-muted-foreground">{item.agent.value}</span>
                   </div>
                 </div>
