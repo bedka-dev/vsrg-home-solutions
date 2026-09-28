@@ -160,3 +160,11 @@ All colors MUST be HSL.
   }
 }
 }
+
+/* Google PlaceAutocompleteElement renders its own input in shadow DOM;
+   keep it light to match the site's form fields. */
+gmp-place-autocomplete.gmp-address-autocomplete {
+  color-scheme: light;
+  display: block;
+  width: 100%;
+}
